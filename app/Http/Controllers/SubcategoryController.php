@@ -59,9 +59,9 @@ class SubcategoryController extends Controller
      * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(subcategory $subcategory)
+    public function edit(subcategory $subcategory, $id)
     {
-        //
+        return subcategory::find($id);
     }
 
     /**
@@ -71,9 +71,12 @@ class SubcategoryController extends Controller
      * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, subcategory $subcategory)
+    public function update(Request $request, subcategory $subcategory, $id)
     {
-        //
+        $sub_cate = subcategory::find($id);
+        $sub_cate->sub_cate_name = $request->sub_cate_name;
+        $sub_cate->cate_id = $request->cate_id;
+        $sub_cate->save();
     }
 
     /**
@@ -82,9 +85,9 @@ class SubcategoryController extends Controller
      * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(subcategory $subcategory)
+    public function destroy(subcategory $subcategory, $id)
     {
-        //
+        subcategory::destroy($id);        
     }
     public function formValidation($request){
         $this->validate($request, [

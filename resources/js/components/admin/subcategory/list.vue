@@ -27,8 +27,8 @@
                       <td>{{ subcategorylist.categories.cate_name }}</td>
                       <td>
                         <div class="">
-                          <router-link v-bind:to='`/edit_category/${subcategorylist.id}`' class="btn btn-xs btn-info"><i class="fa fa-edit"></i></router-link>
-                          <a v-on:click ="categoryDelete(subcategorylist.id)" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                          <router-link v-bind:to='`/edit_subcategory/${subcategorylist.id}`' class="btn btn-xs btn-info"><i class="fa fa-edit"></i></router-link>
+                          <a v-on:click ="subCategoryDelete(subcategorylist.id)" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                         </div>
                       </td>
                     </tr>
@@ -43,28 +43,27 @@
 
 <script>
 export default {
-  data(){
-    return{
+	data(){
+		return{
 
-    }
-  },
-  mounted(){
-	  this.$store.dispatch('getSubCategoryListAc')
-  },
-  computed:{
-	  getSubCategoryList(){
-		 return this.$store.getters.subCategoryList
-	  }
-  },
-  methods:{
-   
-    categoryDelete(id){
-      axios.get('/categorydelete/'+id)
-      .then((response)=>{
-        this.$store.dispatch('getCategoryListAc')
-      });
-    }
-  }
+		}
+	},
+	mounted(){
+		this.$store.dispatch('getSubCategoryListAc')
+	},
+	computed:{
+		getSubCategoryList(){
+			return this.$store.getters.subCategoryList
+		}
+	},
+	methods:{
+		subCategoryDelete(id){
+			axios.get('/subcategorydelete/'+id)
+			.then((response)=>{
+				this.$store.dispatch('getSubCategoryListAc')
+			});
+		}
+	}
 }
 </script>
 

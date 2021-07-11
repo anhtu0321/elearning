@@ -2,22 +2,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import VueRouter from 'vue-router'
-Vue.use(VueRouter);
-
-import { routes } from './routes';
-
-const router = new VueRouter({
-    routes // viet tat cua routes:routes
-});
-
-import VueX from 'vuex'
-Vue.use(VueX);
-
-import storeInfo from './store/store'
-const store = new VueX.Store({
-    storeInfo
-});
+import router from './routes';
+import store from './store/store'
 
 Vue.component('admin-master', require('./components/admin/adminmaster.vue').default);
 

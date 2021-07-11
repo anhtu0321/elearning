@@ -4,9 +4,9 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Category List</h3>
+                <h3 class="card-title">Sub Category List</h3>
                 <div class="text-right">
-                    <router-link to="/add_category" class="btn btn-sm btn-success">Add</router-link>
+                    <router-link to="/add_subcategory" class="btn btn-sm btn-success">Add</router-link>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -15,18 +15,20 @@
                   <thead>
                     <tr>
                       <th style="width: 10px">#</th>
+                      <th>Sub Category Name</th>
                       <th>Category Name</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(categorylist, index) in getCategoryList" :key="categorylist.id">
-                      <td>{{ index }}</td>
-                      <td>{{ categorylist.cate_name }}</td>
+                    <tr v-for="(subcategorylist, index) in getSubCategoryList" :key="subcategorylist.id">
+                      <td>{{ index +1 }}</td>
+                      <td>{{ subcategorylist.sub_cate_name }}</td>
+                      <td>{{ subcategorylist.categories.cate_name }}</td>
                       <td>
                         <div class="">
-                          <router-link v-bind:to='`/edit_category/${categorylist.id}`' class="btn btn-xs btn-info"><i class="fa fa-edit"></i></router-link>
-                          <a v-on:click ="categoryDelete(categorylist.id)" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                          <router-link v-bind:to='`/edit_category/${subcategorylist.id}`' class="btn btn-xs btn-info"><i class="fa fa-edit"></i></router-link>
+                          <a v-on:click ="categoryDelete(subcategorylist.id)" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                         </div>
                       </td>
                     </tr>
@@ -47,11 +49,11 @@ export default {
     }
   },
   mounted(){
-	  this.$store.dispatch('getCategoryListAc')
+	  this.$store.dispatch('getSubCategoryListAc')
   },
   computed:{
-	  getCategoryList(){
-		 return this.$store.getters.categoryList
+	  getSubCategoryList(){
+		 return this.$store.getters.subCategoryList
 	  }
   },
   methods:{

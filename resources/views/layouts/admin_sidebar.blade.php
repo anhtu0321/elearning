@@ -46,6 +46,12 @@
                 <p>Manage Category</p>
               </router-link>
             </li>
+            <li class="nav-item">
+              <router-link to="/subcategory" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>Manage Sub Category</p>
+              </router-link>
+            </li>
 
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"

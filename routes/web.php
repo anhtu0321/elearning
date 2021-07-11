@@ -22,3 +22,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/categorysave', 'CategoryController@store')->name('category.store');
 Route::get('/categorylist', 'CategoryController@index')->name('category.index');
+Route::get('/categorybyid/{id}', 'CategoryController@edit')->name('category.edit');
+Route::post('/categoryupdate/{id}', 'CategoryController@update')->name('category.update');
+Route::get('/categorydelete/{id}', 'CategoryController@destroy')->name('category.destroy');
+
+Route::post('/subcategorysave', 'SubCategoryController@store')->name('subcategory.store');
+Route::get('/subcategorylist', 'SubCategoryController@index')->name('subcategory.index');
+Route::get('/subcategorybyid/{id}', 'SubCategoryController@edit')->name('subcategory.edit');
+Route::post('/subcategoryupdate/{id}', 'SubCategoryController@update')->name('subcategory.update');
+Route::get('/subcategorydelete/{id}', 'SubCategoryController@destroy')->name('subcategory.destroy');
+

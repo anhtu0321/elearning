@@ -35,7 +35,7 @@ export default {
         categoryUpdate(){
           let data = new FormData;
           data.append('cate_name', this.cate_name);
-          axios.post(`/categoryupdate/${this.$route.params.categoryId}`, data)
+          axios.post(`/elearning/public/categoryupdate/${this.$route.params.categoryId}`, data)
           .then(response => {
               this.goback();
           })
@@ -48,7 +48,7 @@ export default {
         }
     },
     mounted(){
-        axios.get(`/categorybyid/${this.$route.params.categoryId}`)
+        axios.get(`/elearning/public/categorybyid/${this.$route.params.categoryId}`)
         .then((response)=>{
             this.cate_name = response.data.cate_name;
         })

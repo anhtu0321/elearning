@@ -58,7 +58,7 @@ export default {
 	},
 	methods:{
 		subCategoryDelete(id){
-			axios.get('/subcategorydelete/'+id)
+			axios.get('/elearning/public/subcategorydelete/'+id)
 			.then((response)=>{
 				this.$store.dispatch('getSubCategoryListAc')
 			});

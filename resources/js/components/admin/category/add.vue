@@ -35,7 +35,7 @@ export default {
         categorySave(){
           let data = new FormData;
           data.append('cate_name', this.cate_name);
-          axios.post('/categorysave', data)
+          axios.post('/elearning/public/categorysave', data)
           .then(response => {
               this.goback();
           })

@@ -57,7 +57,7 @@ export default {
   methods:{
    
     categoryDelete(id){
-      axios.get('/categorydelete/'+id)
+      axios.get('/elearning/public/categorydelete/'+id)
       .then((response)=>{
         this.$store.dispatch('getCategoryListAc')
       });

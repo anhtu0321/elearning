@@ -9,61 +9,69 @@
                 <form role="form" v-on:submit.prevent="categorySave">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-8 right-border">
+                            <div class="col-md-7 right-border">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Category Name</label>
-                                            <input type="text" class="form-control" v-model="cate_name" placeholder="Enter Category">
+                                            <select class="form-control">
+                                                <option value=""></option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Category Name</label>
-                                            <input type="text" class="form-control" v-model="cate_name" placeholder="Enter Category">
+                                            <label>Category Sub Name</label>
+                                            <select class="form-control">
+                                                <option value=""></option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Category Name</label>
-                                            <input type="text" class="form-control" v-model="cate_name" placeholder="Enter Category">
+                                            <label>Content title</label>
+                                            <input type="text" class="form-control" v-model="cate_name" placeholder="Enter Name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Category Name</label>
-                                            <input type="text" class="form-control" v-model="cate_name" placeholder="Enter Category">
+                                            <label>Description</label>
+                                            <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Category Name</label>
-                                            <input type="text" class="form-control" v-model="cate_name" placeholder="Enter Category">
+                                            <label>Upload File</label>
+                                            <input type="file" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Category Name</label>
+                                            <label>Video Url</label>
                                             <input type="text" class="form-control" v-model="cate_name" placeholder="Enter Category">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" class="btn btn-danger" v-on:click="goback">Back</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>    
-                    </div>
-                    <div class="card-footer text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="submit" class="btn btn-danger" v-on:click="goback">Back</button>
                     </div>
                 </form>
             </div>
@@ -73,10 +81,19 @@
 </template>
 
 <script>
+import CKEditor from 'ckeditor4-vue';
 export default {
+    components: {
+        // Use the <ckeditor> component in this view.
+        ckeditor: CKEditor.component
+    },
     data(){
         return {
             cate_name:'',
+            editorData: '<p>Content of the editor.</p>',
+            editorConfig: {
+                // The configuration of the editor.
+            }
         }
     },
     methods:{
@@ -93,7 +110,8 @@ export default {
         },
         goback(){
           this.$router.push('/content');
-        }
+        },
+        
     },
     mounted(){
     }

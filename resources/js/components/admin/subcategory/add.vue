@@ -57,7 +57,7 @@ export default {
           let data = new FormData;
           data.append('sub_cate_name', this.sub_cate_name);
           data.append('cate_id', this.cate_id);
-          axios.post('/subcategorysave', data)
+          axios.post('/elearning/public/subcategorysave', data)
           .then(response => {
               this.goback();
           })

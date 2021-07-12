@@ -45,7 +45,7 @@ export default {
     },
     mounted(){
         this.$store.dispatch('getCategoryListAc');
-        axios.get('/subcategorybyid/'+this.$route.params.subcategoryId)
+        axios.get('/elearning/public/subcategorybyid/'+this.$route.params.subcategoryId)
         .then((response)=>{
             this.sub_cate_name = response.data.sub_cate_name;
             this.cate_id = response.data.cate_id;
@@ -63,7 +63,7 @@ export default {
           let data = new FormData;
           data.append('sub_cate_name', this.sub_cate_name);
           data.append('cate_id', this.cate_id);
-          axios.post(`/subcategoryupdate/${this.$route.params.subcategoryId}`, data)
+          axios.post(`/elearning/public/subcategoryupdate/${this.$route.params.subcategoryId}`, data)
           .then(response => {
               this.goback();
           })

@@ -18,14 +18,14 @@ const storeInfo = {
     },
     actions: {
         getCategoryListAc: (context) => {
-            axios.get('/categorylist')
+            axios.get('/elearning/public/categorylist')
                 .then((response) => {
                     context.commit('categoryList', response.data);
                 })
                 .catch((err) => console.log(err))
         },
         getSubCategoryListAc: (context) => {
-            axios.get('/subcategorylist')
+            axios.get('/elearning/public/subcategorylist')
                 .then((response) => {
                     context.commit('subCategoryList', response.data);
                 })

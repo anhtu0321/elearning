@@ -35,7 +35,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
             <li class="nav-item">
-              <router-link to="/" class="nav-link active">
+              <router-link to="/" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Dashboard</p>
               </router-link>
@@ -52,7 +52,12 @@
                 <p>Manage Sub Category</p>
               </router-link>
             </li>
-
+            <li class="nav-item">
+              <router-link to="/content" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>Manage Content</p>
+              </router-link>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

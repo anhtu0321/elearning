@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\category;
+use App\subcategory;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class SubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return $category = category::all();
-        // return response()->json(['categoryList'=>$category],200);
+        return subcategory::with('categories')->get();
     }
 
     /**
@@ -37,62 +36,63 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->formValidation($request);
-        $category = new category;
-        $category->cate_name = $request->cate_name;
-        $category->save();
-        // category::create($request->all());
+        $subcategory = new subcategory;
+        $subcategory->sub_cate_name = $request->sub_cate_name;
+        $subcategory->cate_id = $request->cate_id;
+        $subcategory->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\category  $category
+     * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function show(category $category,$id)
+    public function show(subcategory $subcategory)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\category  $category
+     * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(subcategory $subcategory, $id)
     {
-        return $categorybyid = category::find($id);
-        // return response()->json(['categorybyid'=>$categorybyid],200);
+        return subcategory::find($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\category  $category
+     * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category $category, $id)
+    public function update(Request $request, subcategory $subcategory, $id)
     {
-        $cate_info = category::find($id);
-        $cate_info->cate_name = $request->cate_name;
-        $cate_info->save();
+        $sub_cate = subcategory::find($id);
+        $sub_cate->sub_cate_name = $request->sub_cate_name;
+        $sub_cate->cate_id = $request->cate_id;
+        $sub_cate->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\category  $category
+     * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(category $category, $id)
+    public function destroy(subcategory $subcategory, $id)
     {
-        category::destroy($id);
+        subcategory::destroy($id);        
     }
     public function formValidation($request){
         $this->validate($request, [
-            'cate_name' =>'required',
+            'cate_id' =>'required',
+            'sub_cate_name' =>'required',
         ]);
     }
 }

@@ -25,8 +25,8 @@
                       <td>{{ categorylist.cate_name }}</td>
                       <td>
                         <div class="">
-                          <router-link to="" class="btn btn-xs btn-info"><i class="fa fa-edit"></i></router-link>
-                          <router-link to="" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></router-link>
+                          <router-link v-bind:to='`/edit_category/${categorylist.id}`' class="btn btn-xs btn-info"><i class="fa fa-edit"></i></router-link>
+                          <a v-on:click ="categoryDelete(categorylist.id)" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                         </div>
                       </td>
                     </tr>
@@ -53,6 +53,15 @@ export default {
 	  getCategoryList(){
 		 return this.$store.getters.categoryList
 	  }
+  },
+  methods:{
+   
+    categoryDelete(id){
+      axios.get('/categorydelete/'+id)
+      .then((response)=>{
+        this.$store.dispatch('getCategoryListAc')
+      });
+    }
   }
 }
 </script>

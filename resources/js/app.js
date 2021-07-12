@@ -14,7 +14,32 @@ const router = new VueRouter({
 import VueX from 'vuex'
 Vue.use(VueX);
 
-import storeInfo from './store/store'
+const storeInfo = {
+    state: {
+        category: [],
+    },
+    getters: {
+        categoryList() {
+            return state.category;
+        }
+    },
+    actions: {
+        getCategoryListAc: (context) => {
+            Axios.get('/categorylist')
+                .then((response) => {
+                    context.commit('categoryList', response.data.categoryList);
+                })
+                .catch((err) => console.log(err))
+        }
+    },
+    mutations: {
+        categoryList(state, responseData) {
+            state.category = responseData;
+        }
+    },
+
+}
+
 const store = new VueX.Store({
     storeInfo
 });

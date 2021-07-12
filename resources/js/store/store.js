@@ -3,6 +3,7 @@ import Axios from "axios"
 const storeInfo = {
     state: {
         category: [],
+        test: 'tu'
     },
     getters: {
         categoryList() {

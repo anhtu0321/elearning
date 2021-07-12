@@ -55150,7 +55150,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -55163,9 +55162,32 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 });
 
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]);
-
+var storeInfo = {
+  state: {
+    category: []
+  },
+  getters: {
+    categoryList: function categoryList() {
+      return state.category;
+    }
+  },
+  actions: {
+    getCategoryListAc: function getCategoryListAc(context) {
+      Axios.get('/categorylist').then(function (response) {
+        context.commit('categoryList', response.data.categoryList);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
+  },
+  mutations: {
+    categoryList: function categoryList(state, responseData) {
+      state.category = responseData;
+    }
+  }
+};
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
-  storeInfo: _store_store__WEBPACK_IMPORTED_MODULE_3__["default"]
+  storeInfo: storeInfo
 });
 Vue.component('admin-master', __webpack_require__(/*! ./components/admin/adminmaster.vue */ "./resources/js/components/admin/adminmaster.vue")["default"]);
 var app = new Vue({
@@ -55523,46 +55545,6 @@ var routes = [{
   path: '/add_category',
   component: _components_admin_category_add_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }];
-
-/***/ }),
-
-/***/ "./resources/js/store/store.js":
-/*!*************************************!*\
-  !*** ./resources/js/store/store.js ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var storeInfo = {
-  state: {
-    category: []
-  },
-  getters: {
-    categoryList: function categoryList() {
-      return state.category;
-    }
-  },
-  actions: {
-    getCategoryListAc: function getCategoryListAc(context) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/categorylist').then(function (response) {
-        context.commit('categoryList', response.data.categoryList);
-      })["catch"](function (err) {
-        return console.log(err);
-      });
-    }
-  },
-  mutations: {
-    categoryList: function categoryList(state, responseData) {
-      state.category = responseData;
-    }
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = (storeInfo);
 
 /***/ }),
 

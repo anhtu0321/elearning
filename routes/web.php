@@ -32,3 +32,11 @@ Route::get('/subcategorybyid/{id}', 'SubCategoryController@edit')->name('subcate
 Route::post('/subcategoryupdate/{id}', 'SubCategoryController@update')->name('subcategory.update');
 Route::get('/subcategorydelete/{id}', 'SubCategoryController@destroy')->name('subcategory.destroy');
 
+// router for subCategory by categoryId
+Route::get('/getsubcategorybycategoryid/{id}', 'SubCategoryController@getSubCategoryByCategoryId')->name('subcategory.getSubCategoryByCategoryId');
+
+Route::post('/contentsave', 'ContentController@store')->name('content.store');
+// Route::get('/subcategorylist', 'SubCategoryController@index')->name('subcategory.index');
+// Route::get('/subcategorybyid/{id}', 'SubCategoryController@edit')->name('subcategory.edit');
+// Route::post('/subcategoryupdate/{id}', 'SubCategoryController@update')->name('subcategory.update');
+// Route::get('/subcategorydelete/{id}', 'SubCategoryController@destroy')->name('subcategory.destroy');

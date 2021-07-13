@@ -95,4 +95,7 @@ class SubcategoryController extends Controller
             'sub_cate_name' =>'required',
         ]);
     }
+    public function getSubCategoryByCategoryId(subcategory $subcategory, $id){
+        return $subcategory = subcategory::Where('cate_id', $id)->get();
+    }
 }
